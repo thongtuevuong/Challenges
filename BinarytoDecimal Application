@@ -1,0 +1,52 @@
+// An application converts binary number to decimal number
+
+namespace Binary2Decimal
+{
+    public partial class BinaryToDecimal : Form
+    {
+        public BinaryToDecimal()
+        {
+            InitializeComponent();
+        }
+        private void btnConvert_Click(object sender, EventArgs e)
+        {
+            string BiNum = txtBinaryNumber.Text;
+
+            if (BiNum == "")
+            {
+                MessageBoxButtons messagebuttons = MessageBoxButtons.RetryCancel;
+                DialogResult result = MessageBox.Show("You should enter numbers", "Warning!", messagebuttons);
+                if (result == DialogResult.Cancel)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    string Binum = txtBinaryNumber.Text.Trim();
+                }
+            }
+            else
+            {
+                var num1 = Convert.ToInt64(BiNum);
+                double decimalnum = 0;
+                int p = 0;
+                while (num1 > 0)
+                {
+                    decimalnum += (num1 % 10) * Math.Pow(2, p);
+
+                    num1 /= 10;
+                    ++p;
+                }
+                var total = decimalnum;
+                txtDecimalNum.Text = total.ToString();
+            }
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtBinaryNumber.Text = String.Empty;
+            txtDecimalNum.Text = String.Empty;
+        }
+    }
+}
